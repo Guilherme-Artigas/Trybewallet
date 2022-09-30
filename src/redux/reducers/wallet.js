@@ -1,3 +1,5 @@
+import { UPDATE_WALLET } from '../actions';
+
 const INITIAL_STATE = {
   wallet: {
     currencies: [], // array de string
@@ -9,6 +11,11 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case UPDATE_WALLET:
+    return {
+      ...state.wallet,
+      currencies: action.payload.filter((e) => e !== 'USDT'),
+    };
   default:
     return state;
   }

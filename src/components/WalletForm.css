@@ -1,0 +1,11 @@
+.form {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 5px;
+}
+
+.form label input {
+  width: 100px;
+}

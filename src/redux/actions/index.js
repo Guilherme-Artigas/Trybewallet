@@ -10,3 +10,9 @@ export const upDateWallet = (payload) => ({
   type: UPDATE_WALLET,
   payload,
 });
+
+export const fetchAPI = () => async (dispatch) => {
+  const requestAPI = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const json = await requestAPI.json();
+  dispatch(upDateWallet(Object.keys(json)));
+};
