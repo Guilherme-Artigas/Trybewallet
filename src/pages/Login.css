@@ -1,0 +1,43 @@
+.login {
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 200px auto;
+  padding: 100px 0;
+  text-align: center;
+  width: 50%;
+}
+
+.login h1 {
+  font-size: 48px;
+  margin-bottom: 50px;
+}
+
+.login input , button {
+  display: block;
+  margin: 1px auto;
+  padding: 5px;
+  width: 30%;
+}
+
+.login button {
+  background-color: rgb(2, 171, 71);
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-weight: 700;
+  padding: 10px 5px;
+  transition: 2s;
+  width: 32%;
+}
+
+.login button:disabled {
+  background-color: lightgrey;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-weight: 700;
+  padding: 10px 5px;
+  width: 32%;
+}
