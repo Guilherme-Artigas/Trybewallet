@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.header div {
+  align-items: center;
+  display: flex;
+}
+
+.header div p {
+  margin: 0 20px;
+}
