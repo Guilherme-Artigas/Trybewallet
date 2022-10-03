@@ -1,24 +1,31 @@
-import { UPDATE_WALLET } from '../actions';
+import { UPDATE_COINS, UPDATE_WALLET } from '../actions';
 
 const INITIAL_STATE = {
-  wallet: {
-    currencies: [], // array de string
-    expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
-    editor: false, // valor booleano que indica de uma despesa está sendo editada
-    idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
-  },
+  currencies: [],
+  expenses: [],
+  editor: false,
+  idToEdit: 0,
+  total: 0,
 };
 
-const walletReducer = (state = INITIAL_STATE, action) => {
+const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case UPDATE_COINS:
+    return {
+      ...state,
+      currencies: Object.keys(action.payload).filter((e) => e !== 'USDT'),
+    };
   case UPDATE_WALLET:
     return {
-      ...state.wallet,
-      currencies: action.payload.filter((e) => e !== 'USDT'),
+      ...state,
+      expenses: [...state.expenses, { ...action.payload }],
+      total: state.total + (
+        Number(action.payload.exchangeRates[action.payload.currency].ask)
+        * Number(action.payload.value)),
     };
   default:
     return state;
   }
 };
 
-export default walletReducer;
+export default wallet;

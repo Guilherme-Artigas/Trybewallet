@@ -14,7 +14,7 @@
   margin-bottom: 50px;
 }
 
-.login input , button {
+.login input , .login button {
   display: block;
   margin: 1px auto;
   padding: 5px;

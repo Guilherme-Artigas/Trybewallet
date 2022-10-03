@@ -1,32 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchAPI } from '../redux/actions';
+import { fetchApiCoins, fetchApiWallet, upDateWallet } from '../redux/actions';
 import './WalletForm.css';
 
 class WalletForm extends Component {
+  state = {
+    id: -1,
+    value: '',
+    description: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
+    exchangeRates: {},
+  };
+
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchAPI());
+    dispatch(fetchApiCoins());
   }
+
+  handle = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
+  };
+
+  handleClick = async () => {
+    const objectCoins = await fetchApiWallet();
+    this.setState((prev) => ({
+      id: prev.id + 1,
+      exchangeRates: objectCoins,
+    }), () => {
+      const { dispatch } = this.props;
+      dispatch(upDateWallet(this.state));
+      this.setState({ value: '', description: '' });
+    });
+  };
 
   render() {
     const { currencies } = this.props;
+    const { value, description } = this.state;
 
     return (
       <form className="form">
         <label htmlFor="valorDespesa">
-          Valor Despesa:
+          Valor Despesa.:
           {' '}
           <input
             type="number"
             data-testid="value-input"
+            name="value"
+            value={ value }
+            onChange={ this.handle }
           />
         </label>
         <label htmlFor="moeda">
-          Moeda:
+          Moeda.:
           {' '}
-          <select data-testid="currency-input">
+          <select data-testid="currency-input" name="currency" onChange={ this.handle }>
             {currencies.map((e, i) => (
               <option key={ `${e.name}-${i}` }>{e}</option>
             ))}
@@ -35,7 +65,7 @@ class WalletForm extends Component {
         <label htmlFor="metodoPagamento">
           Método de Pagamento.:
           {' '}
-          <select data-testid="method-input">
+          <select data-testid="method-input" name="method" onChange={ this.handle }>
             <option>Dinheiro</option>
             <option>Cartão de crédito</option>
             <option>Cartão de débito</option>
@@ -44,7 +74,7 @@ class WalletForm extends Component {
         <label htmlFor="categoria">
           Categoria.:
           {' '}
-          <select data-testid="tag-input">
+          <select data-testid="tag-input" onChange={ this.handle } name="tag">
             <option>Alimentação</option>
             <option>Lazer</option>
             <option>Trabalho</option>
@@ -53,13 +83,17 @@ class WalletForm extends Component {
           </select>
         </label>
         <label htmlFor="descricão">
-          Descrição:
+          Descrição.:
           {' '}
           <input
             type="text"
             data-testid="description-input"
+            name="description"
+            value={ description }
+            onChange={ this.handle }
           />
         </label>
+        <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
       </form>
     );
   }
