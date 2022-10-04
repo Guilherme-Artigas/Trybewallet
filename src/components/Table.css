@@ -1,20 +1,38 @@
 .tabela {
   border-spacing: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-.tabela thead {
+.tabela thead , .tabela tbody {
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-.tabela th {
+.tabela th , .tabela td {
   border: 1px solid black;
   padding: 5px;
+  text-align: center;
   width: 10%;
+}
+
+.btnEdit {
+  background-color: mediumspringgreen;
+  border: none;
+  border-radius: 5px;
+  margin: 0 5px;
+  padding: 5px;
+}
+
+.btnDelet {
+  background-color: tomato;
+  border: none;
+  border-radius: 5px;
+  margin: 0 5px;
+  padding: 5px;
 }
