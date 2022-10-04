@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 class Table extends Component {
   render() {
     const { expenses } = this.props;
-    // console.log(expenses);
     return (
       <table className="tabela">
         <thead>
@@ -44,7 +43,8 @@ class Table extends Component {
                 </button>
                 <button
                   type="button"
-                  className="btnDelet"
+                  className="btnDelete"
+                  data-testid="delete-btn"
                 >
                   Excluir
                 </button>
