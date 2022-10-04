@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchApiCoins, fetchApiWallet, upDateWallet } from '../redux/actions';
+import { fetchApiCoins, fetchApiWallet, upDateExpenses } from '../redux/actions';
 import './WalletForm.css';
 
 class WalletForm extends Component {
@@ -31,7 +31,7 @@ class WalletForm extends Component {
       exchangeRates: objectCoins,
     }), () => {
       const { dispatch } = this.props;
-      dispatch(upDateWallet(this.state));
+      dispatch(upDateExpenses(this.state));
       this.setState({ value: '', description: '' });
     });
   };

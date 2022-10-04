@@ -2,8 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Table.css';
 import PropTypes from 'prop-types';
+import { deleteExpenses } from '../redux/actions';
 
 class Table extends Component {
+  constructor() {
+    super();
+    this.deleteButton = this.deleteButton.bind(this);
+  }
+
+  deleteButton(id) {
+    const { expenses, dispatch } = this.props;
+    const newList = expenses.filter((e) => e.id !== id);
+    dispatch(deleteExpenses(newList));
+  }
+
   render() {
     const { expenses } = this.props;
     return (
@@ -45,6 +57,7 @@ class Table extends Component {
                   type="button"
                   className="btnDelete"
                   data-testid="delete-btn"
+                  onClick={ () => this.deleteButton(e.id) }
                 >
                   Excluir
                 </button>
@@ -59,10 +72,12 @@ class Table extends Component {
 
 Table.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.shape({})),
+  dispatch: PropTypes.func,
 };
 
 Table.defaultProps = {
   expenses: [],
+  dispatch: () => {},
 };
 
 const mapStateToProps = ({ wallet }) => wallet;

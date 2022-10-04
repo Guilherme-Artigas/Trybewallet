@@ -1,6 +1,7 @@
 export const UPDATE_EMAIL = 'UPDATE_EMAIL';
 export const UPDATE_COINS = 'UPDATE_COINS';
-export const UPDATE_WALLET = 'UPDATE_WALLET';
+export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
+export const DEL_EXPENSES = 'DEL_EXPENSES';
 
 export const upDateEmail = (email) => ({
   type: UPDATE_EMAIL,
@@ -12,8 +13,13 @@ export const upDateCoins = (payload) => ({
   payload,
 });
 
-export const upDateWallet = (payload) => ({
-  type: UPDATE_WALLET,
+export const upDateExpenses = (payload) => ({
+  type: UPDATE_EXPENSES,
+  payload,
+});
+
+export const deleteExpenses = (payload) => ({
+  type: DEL_EXPENSES,
   payload,
 });
 
