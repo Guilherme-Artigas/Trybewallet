@@ -24,13 +24,13 @@ const wallet = (state = INITIAL_STATE, action) => {
         * Number(action.payload.value)),
     };
   case DEL_EXPENSES:
-    console.log(action.payload);
     return {
       ...state,
       expenses: action.payload,
-      // total: state.total + (
-      //   Number(action.payload[2][action.payload[0]].ask)
-      //   * Number(action.payload[6])),
+      total: action.payload.reduce((acc, curr) => {
+        acc += (Number(curr.value) * Number(curr.exchangeRates[curr.currency].ask));
+        return acc;
+      }, 0),
     };
   default:
     return state;
