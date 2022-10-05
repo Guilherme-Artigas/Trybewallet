@@ -25,9 +25,7 @@ describe('Testes do componente Table', () => {
     const coins = screen.getByTestId('currency-input');
     expect(coins).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(coins).toHaveValue('USD');
-    });
+    await waitFor(() => { expect(coins).toHaveValue('USD'); });
 
     userEvent.selectOptions(coins, 'ETH');
 
@@ -38,12 +36,23 @@ describe('Testes do componente Table', () => {
     const btnAddExp = screen.getByRole('button', { name: /adicionar despesa/i });
     userEvent.click(btnAddExp);
 
-    const expDescrp = await screen.findByRole('cell', { name: /teste/i });
-    expect(expDescrp).toHaveTextContent('teste');
+    const expDescrp1 = await screen.findByRole('cell', { name: /teste/i });
+    expect(expDescrp1).toHaveTextContent('teste');
+
+    const editBtnTable = await screen.findByRole('button', { name: /editar/i });
+    userEvent.click(editBtnTable);
+
+    const editBtnForm = screen.getByRole('button', { name: /editar despesa/i });
+    expect(editBtnForm).toBeInTheDocument();
+
+    userEvent.type(fieldDescrip, 'testeEditado');
+    userEvent.click(editBtnForm);
+    const expDescrp2 = await screen.findByRole('cell', { name: /testeEditado/i });
+    expect(expDescrp2).toHaveTextContent('testeEditado');
 
     const deleteBtn = await screen.findByRole('button', { name: /excluir/i });
     userEvent.click(deleteBtn);
 
-    expect(expDescrp).not.toBeInTheDocument();
+    expect(expDescrp1).not.toBeInTheDocument();
   });
 });
