@@ -31,13 +31,10 @@ describe('Testando comportamento do componente Wallet', () => {
     expect(fieldValue.value).not.toBe('');
 
     const coinText = screen.getByText(/moeda\.:/i);
-    // within(coinText).getByRole('combobox');
 
     const payMethodText = screen.getByText(/método de pagamento\.:/i);
-    // within(payMethodText).getByRole('combobox');
 
     const categoriesText = screen.getByText(/categoria\.:/i);
-    // within(categoriesText).getByRole('combobox');
 
     const descText = screen.getByText(/descrição\.:/i);
     const fieldDescrip = screen.getByRole('textbox');
@@ -46,8 +43,6 @@ describe('Testando comportamento do componente Wallet', () => {
 
     const btnAddExp = screen.getByRole('button', { name: /adicionar despesa/i });
     userEvent.click(btnAddExp);
-
-    // fetchApiWallet, dispatch, upDateWallet
 
     expect(titleWallet).toBeInTheDocument();
     expect(fieldEmail).toBeInTheDocument();

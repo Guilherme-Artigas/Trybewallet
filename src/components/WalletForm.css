@@ -9,3 +9,15 @@
 .form label input {
   width: 100px;
 }
+
+.formEdit {
+  background-color: mediumseagreen;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 5px;
+}
+
+.formEdit label input {
+  width: 100px;
+}

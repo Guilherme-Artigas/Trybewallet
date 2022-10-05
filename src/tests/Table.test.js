@@ -1,11 +1,11 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 import App from '../App';
 
 describe('Testes do componente Table', () => {
-  it('', () => {
+  it('', async () => {
     const { history } = renderWithRouterAndRedux(<App />);
 
     const emailLogin = screen.getByRole('textbox');
@@ -19,31 +19,31 @@ describe('Testes do componente Table', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/carteira');
 
-    // const fieldValue = screen.getByRole('spinbutton');
-    // userEvent.type(fieldValue, '10');
-    // const fieldDescrip = screen.getByRole('textbox');
-    // userEvent.type(fieldDescrip, 'teste');
+    const fieldValue = screen.getByRole('spinbutton');
+    userEvent.type(fieldValue, '10');
 
-    // const btnAddExp = screen.getByRole('button', { name: /adicionar despesa/i });
-    // userEvent.click(btnAddExp);
+    const coins = screen.getByTestId('currency-input');
+    expect(coins).toBeInTheDocument();
 
-    // const expDescrp = screen.getByRole('cell', { name: /teste/i });
-    // expect(expDescrp).toBeInTheDocument();
+    await waitFor(() => {
+      expect(coins).toHaveValue('USD');
+    });
+
+    userEvent.selectOptions(coins, 'ETH');
+
+    expect(fieldValue).toHaveValue(10);
+    const fieldDescrip = screen.getByRole('textbox');
+    userEvent.type(fieldDescrip, 'teste');
+
+    const btnAddExp = screen.getByRole('button', { name: /adicionar despesa/i });
+    userEvent.click(btnAddExp);
+
+    const expDescrp = await screen.findByRole('cell', { name: /teste/i });
+    expect(expDescrp).toHaveTextContent('teste');
+
+    const deleteBtn = await screen.findByRole('button', { name: /excluir/i });
+    userEvent.click(deleteBtn);
+
+    expect(expDescrp).not.toBeInTheDocument();
   });
 });
-
-// const tableHeader = screen.getByRole('columnheader', { name: /descrição/i });
-// const descrip = screen.getByRole('columnheader', { name: /descrição/i });
-// const tag = screen.getByRole('columnheader', { name: /tag/i });
-// const currency = screen.getByRole('columnheader', { name: /câmbio utilizado/i });
-// const value = screen.getByRole('columnheader', { name: /valor convertido/i });
-// const coin = screen.getByRole('columnheader', { name: /moeda de conversão/i });
-// const btnfield = screen.getByRole('columnheader', { name: /editar\/excluir/i });
-
-// expect(tableHeader).toBeInTheDocument();
-// expect(descrip).toBeInTheDocument();
-// expect(tag).toBeInTheDocument();
-// expect(currency).toBeInTheDocument();
-// expect(value).toBeInTheDocument();
-// expect(coin).toBeInTheDocument();
-// expect(btnfield).toBeInTheDocument();
