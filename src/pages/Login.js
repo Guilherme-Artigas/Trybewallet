@@ -45,7 +45,7 @@ class Login extends React.Component {
         <h1>Trybe 💱 Wallet</h1>
         <input
           type="text"
-          placeholder="Usuário"
+          placeholder="Email"
           data-testid="email-input"
           name="userEmail"
           onChange={ this.handle }
