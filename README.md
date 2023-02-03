@@ -2,6 +2,8 @@
 
 Olá seja bem vindo ao repositório do projeto **TrybeWallet**.
 
+TrybeWallet é uma carteira de despesas online, nele é possível cadastrar despesas em 15 tipos de moedas diferentes, inclusive em bitcoins, tudo isso atualizado em tempo real.
+
 Esse projeto foi desenvolvido no módulo de Front-End do curso da _[Trybe](https://www.betrybe.com/)_, mais especificamente na seção 7 e com **4** meses de curso.
 
 Recebi esse desafio, aonde deveria desenvolver do zero uma aplicação front-end, em que a pessoa usuaria digita e-mail e senha os dois campos contem lógicas de validação através de regex e o botão de acesso a entrar na aplicação só é liberado caso a pessoa digite um e-mail válido contendo (qualquercoisa@email.com) e a senha deve possuir 6 ou mais caracteres. **Nem e-mail e nem senha são salvos.**
