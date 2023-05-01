@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Noto+Sans:wght@300;400&display=swap');
+
 .form {
   background-color: #333;
+  border-radius: 5px;
   color: white;
   display: flex;
   justify-content: space-around;
+  font-family: 'Noto Sans', sans-serif;
+  margin: 0 auto;
+  max-width: 1300px;
   padding: 40px 5px;
 }
 
@@ -12,9 +18,12 @@
 
 .formEdit {
   background-color: mediumseagreen;
+  border-radius: 5px;
   color: white;
   display: flex;
   justify-content: space-around;
+  margin: 0 auto;
+  max-width: 1300px;
   padding: 40px 5px;
 }
 
